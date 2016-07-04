@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rage.oregonbeerchallenge.HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/home_fragment_top_section_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+        >
+        <TextView
+            android:id="@+id/home_fragment_welcome_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Welcome to the Oregon Beer Challenge!"
+            android:padding="5dp"
+            />
+
+        <Button
+            android:id="@+id/home_fragment_view_breweries_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="view breweries"
+            />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/home_fragment_top_section_linear_layout"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

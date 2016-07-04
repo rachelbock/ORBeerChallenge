@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:id="@+id/brewery_row_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:src="@drawable/ic_home_black_24dp"
+            android:padding="5dp"
+            />
+
+        <TextView
+            android:id="@+id/brewery_row_name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Brewery Name"
+            android:textSize="18sp"
+            android:padding="5dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tried_their_beer"
+            android:padding="5dp"
+            />
+        <CheckBox
+            android:id="@+id/brewery_row_visited_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
