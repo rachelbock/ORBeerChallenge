@@ -34,6 +34,7 @@
         android:textSize="18sp"
         android:textColor="@android:color/primary_text_light"
         android:layout_below="@id/home_fragment_progress_text_view"
+        android:visibility="invisible"
         />
     <TextView
         android:id="@+id/home_fragment_tried_text_view"
@@ -44,6 +45,7 @@
         android:layout_below="@id/home_fragment_progress_text_view"
         android:textSize="18sp"
         android:textColor="@android:color/primary_text_light"
+        android:visibility="invisible"
         />
 
     <android.support.v7.widget.RecyclerView

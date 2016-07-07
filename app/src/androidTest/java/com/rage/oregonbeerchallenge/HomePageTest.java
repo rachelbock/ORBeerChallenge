@@ -16,7 +16,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
- * Tests that the home page is launched at application start.
+ * Tests that the home page is launched at application start and that fab opens brewery list.
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest

@@ -17,7 +17,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 /**
- * Tests display of berwery detail page
+ * Tests display of brewery detail page when brewery row is selected.
  */
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -33,9 +33,10 @@ public class BreweryDetailPageTest {
     }
 
     @Test
-    public void breweryDetailPageTestFromBreweryFragment() {
+    public void breweryDetailPageTestFromBreweryFragment() throws InterruptedException {
         onView(withId(R.id.home_fragment_view_breweries_fab)).perform(click());
         onView(withText(R.string.oregon_breweries)).check(matches(isDisplayed()));
+        Thread.sleep(5000);
         onView(withId(R.id.breweries_fragment_recycler_view)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
         onView(withText(R.string.beer_list)).check(matches(isDisplayed()));
     }

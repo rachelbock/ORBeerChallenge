@@ -34,6 +34,12 @@ public class HomeFragment extends Fragment {
     @Bind(R.id.home_fragment_progress_text_view)
     protected TextView progressText;
 
+    @Bind(R.id.home_fragment_breweries_text)
+    protected TextView breweriesText;
+
+    @Bind(R.id.home_fragment_tried_text_view)
+    protected TextView triedText;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -61,6 +67,8 @@ public class HomeFragment extends Fragment {
         // number of visited breweries.
         if (breweries.size() > 0) {
             progressText.setText(getContext().getString(R.string.you_ve_visited_s_of_oregon_s_breweries, breweries.size()));
+            breweriesText.setVisibility(View.VISIBLE);
+            triedText.setVisibility(View.VISIBLE);
         }
 
         //Sets the brewery recycler view up giving it the list of breweries from the database.
@@ -81,7 +89,5 @@ public class HomeFragment extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
-
 
 }
