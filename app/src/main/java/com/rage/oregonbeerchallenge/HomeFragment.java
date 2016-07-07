@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.rage.oregonbeerchallenge.Adapters.BreweryRecyclerViewAdapter;
 import com.rage.oregonbeerchallenge.Data.BreweryObj;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -23,17 +22,17 @@ import butterknife.OnClick;
 
 
 /**
- * Fragment that is displayed at application launch.
+ * Fragment that is displayed at application launch. Displays number of breweries visited by user and
+ * a list of those breweries. FAB allows user to launch breweries fragment and add more visited breweries
+ * to the database.
  */
 public class HomeFragment extends Fragment {
 
     @Bind(R.id.home_fragment_recycler_view)
     protected RecyclerView recyclerView;
+
     @Bind(R.id.home_fragment_progress_text_view)
     protected TextView progressText;
-
-    public static final String TAG = HomeFragment.class.getSimpleName();
-
 
     public HomeFragment() {
         // Required empty public constructor
@@ -54,11 +53,12 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, rootView);
 
-
-        List<BreweryObj> breweries = new ArrayList<>();
+        // Gets an instance of the local database and gets the list of visited breweries from it.
         VisitedBrewerySQLiteHelper visitedBrewerySQLiteHelper = VisitedBrewerySQLiteHelper.getInstance(getContext());
-        breweries = visitedBrewerySQLiteHelper.getVisitedBreweries();
+        List<BreweryObj> breweries = visitedBrewerySQLiteHelper.getVisitedBreweries();
 
+        // Default message displays if there are no breweries in the database. Otherwise, displays the total
+        // number of visited breweries.
         if (breweries.size() > 0) {
             progressText.setText(getContext().getString(R.string.you_ve_visited_s_of_oregon_s_breweries, breweries.size()));
         }
@@ -81,6 +81,7 @@ public class HomeFragment extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
 
 
 }

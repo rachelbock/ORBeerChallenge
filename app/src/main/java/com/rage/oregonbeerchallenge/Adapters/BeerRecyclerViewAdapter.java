@@ -15,7 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Adapter to display the list of beers by brewery
+ * Adapter to display the list of beers by brewery.
  */
 public class BeerRecyclerViewAdapter extends RecyclerView.Adapter<BeerRecyclerViewAdapter.BeerViewHolder>{
 
@@ -46,6 +46,9 @@ public class BeerRecyclerViewAdapter extends RecyclerView.Adapter<BeerRecyclerVi
         return beers.size();
     }
 
+    /**
+     * View Holder to set up beer row resources.
+     */
     public static class BeerViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.beer_row_name_text_view)

@@ -4,7 +4,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
- * Sets up Retrofit
+ * Sets up Retrofit. Central location for access to retrofit client. Sets it up one time at startup and
+ * all subsequent calls can use it. contains constants for API don't have to be keep.
  */
 public class ApiManager {
 

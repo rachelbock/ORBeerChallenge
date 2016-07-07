@@ -69,9 +69,8 @@ public class BreweryRecyclerViewAdapter extends RecyclerView.Adapter<BreweryRecy
                     holder.visitedCheckBox.setChecked(true);
                     oneBrewery.setVisited(true);
                     visitedBrewerySQLiteHelper.addVisitedBrewery(oneBrewery);
-                }
-                else {
-                 visitedBrewerySQLiteHelper.removeVisitedBrewery(oneBrewery.getId());
+                } else {
+                    visitedBrewerySQLiteHelper.removeVisitedBrewery(oneBrewery.getId());
                     holder.visitedCheckBox.setChecked(false);
                 }
 
@@ -97,6 +96,9 @@ public class BreweryRecyclerViewAdapter extends RecyclerView.Adapter<BreweryRecy
         return breweries.size();
     }
 
+    /**
+     * View Holder to set up brewery row resources.
+     */
     public static class BreweryViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.brewery_row_image)
         protected ImageView breweryImage;

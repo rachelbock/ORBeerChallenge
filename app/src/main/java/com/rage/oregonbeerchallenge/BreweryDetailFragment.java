@@ -40,15 +40,17 @@ public class BreweryDetailFragment extends Fragment {
 
     public static final String TAG = BreweryDetailFragment.class.getSimpleName();
     public static final String ARG_BREWERY = "brewery_argument";
-    private BreweryObj brewery;
-    private List<Beer> beerList;
 
     @Bind(R.id.detail_page_brewery_image)
     protected ImageView breweryImage;
+
     @Bind(R.id.detail_page_brewery_name_text_view)
     protected TextView breweryName;
+
     @Bind(R.id.detail_page_recycler_view)
     protected RecyclerView recyclerView;
+
+    private List<Beer> beerList;
     private BeerRecyclerViewAdapter adapter;
 
 
@@ -73,12 +75,15 @@ public class BreweryDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_brewery_detail_fragment, container, false);
         ButterKnife.bind(this, rootView);
-        brewery = getArguments().getParcelable(ARG_BREWERY);
+
+        BreweryObj brewery = getArguments().getParcelable(ARG_BREWERY);
+
         Picasso.with(getContext()).load(brewery.getImage()).fit().into(breweryImage);
         breweryName.setText(brewery.getName());
 
+        //Gets beers by brewery Id.
         beerList = new ArrayList<>();
-        getBeersByBreweryId(brewery.getId());
+        fetchBeersByBreweryId(brewery.getId());
 
         //Sets the beer recycler view with the list of beers from network call.
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -93,20 +98,27 @@ public class BreweryDetailFragment extends Fragment {
      *
      * @param breweryId - id of brewery whose row was selected.
      */
-    public void getBeersByBreweryId(String breweryId) {
-        Log.d(TAG, "brewery: " + breweryId);
+    public void fetchBeersByBreweryId(String breweryId) {
+
+        //Checks for network connectivity. Shows a toast if no internet connection.
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
+
+            //Makes network call go get beers with the brewery id.
             Call<BeerWrapper> beersCall = ApiManager.getBreweryDBService().getBeersByBrewery(breweryId);
             beersCall.enqueue(new Callback<BeerWrapper>() {
                 @Override
                 public void onResponse(Call<BeerWrapper> call, Response<BeerWrapper> response) {
-                        BeerWrapper beerWrapper = response.body();
-                        if (beerWrapper.getData() != null) {
-                            beerList.addAll(beerWrapper.getData());
-                            adapter.notifyDataSetChanged();
-                        }
+                    BeerWrapper beerWrapper = response.body();
+
+                    //Some breweries do not have beers listed in the database. As long as the list
+                    //is not null - it adds the beers to the beer list and notifies the recycler
+                    //view adapter to update.
+                    if (beerWrapper.getData() != null) {
+                        beerList.addAll(beerWrapper.getData());
+                        adapter.notifyDataSetChanged();
+                    }
                 }
 
                 @Override

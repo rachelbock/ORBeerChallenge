@@ -1,8 +1,10 @@
 package com.rage.oregonbeerchallenge;
 
+import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -19,11 +21,12 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class HomePageTest {
-
+    @Rule
+    public ActivityTestRule<MainActivity> actionBarActivityTestRule = new ActivityTestRule<MainActivity>(MainActivity.class);
     @Test
     public void testHomePageLaunched() {
-        onView(withText("Welcome")).check(matches(isDisplayed()));
-        onView(withId(R.id.home_fragment_view_breweries_button)).perform(click());
-        onView(withText("Cascade")).check(matches(isDisplayed()));
+        onView(withText(R.string.welcome_to_the_oregon_beer_challenge)).check(matches(isDisplayed()));
+        onView(withId(R.id.home_fragment_view_breweries_fab)).perform(click());
+        onView(withText(R.string.oregon_breweries)).check(matches(isDisplayed()));
     }
 }

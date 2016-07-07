@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Local Database setup.
+ * Local Database setup. Database contains a list of all of the breweries that have been marked as
+ * visited by the user.
  */
 public class VisitedBrewerySQLiteHelper extends SQLiteOpenHelper {
 

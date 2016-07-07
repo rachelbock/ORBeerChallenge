@@ -1,6 +1,7 @@
 package com.rage.oregonbeerchallenge;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +13,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Main Activity launched at app startup.
+ * Main Activity launched at app startup. Sets up toolbar and adds the home fragment to the layout.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -53,10 +54,23 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        clearBackStack();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.main_activity_frame_layout, HomeFragment.newInstance());
         transaction.commit();
         return true;
+    }
 
+
+    /**
+     * Method to clear all items from the backstack. Called whenever the home button is selected in
+     * order to prevent buildup of fragments.
+     */
+    public void clearBackStack() {
+        FragmentManager manager = getSupportFragmentManager();
+        if (manager.getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(0);
+            manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
     }
 }

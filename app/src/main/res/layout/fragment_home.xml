@@ -21,6 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/home_fragment_welcome_text_view"
         android:text="@string/no_visited_breweries"
+        android:padding="5dp"
+        android:layout_marginBottom="10dp"
         />
 
     <TextView
@@ -28,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/breweries"
+        android:layout_centerHorizontal="true"
         android:textSize="18sp"
         android:textColor="@android:color/primary_text_light"
         android:layout_below="@id/home_fragment_progress_text_view"

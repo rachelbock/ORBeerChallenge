@@ -12,6 +12,7 @@ import java.util.List;
 public class LocationWrapper {
 
     private List<Location> data;
+    private int numberOfPages;
 
     public LocationWrapper() {
         //No arg constructor for Jackson
@@ -23,5 +24,13 @@ public class LocationWrapper {
 
     public void setData(List<Location> data) {
         this.data = data;
+    }
+
+    public int getNumberOfPages() {
+        return numberOfPages;
+    }
+
+    public void setNumberOfPages(int numberOfPages) {
+        this.numberOfPages = numberOfPages;
     }
 }

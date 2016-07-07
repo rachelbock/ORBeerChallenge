@@ -1,12 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/Users/rage/Code/ORBeerChallenge/app/build/intermediates/exploded-aar/com.android.support/design/23.2.0/jars/classes.jar"
-        jumboMode="true"
-        revision="24.0.0 rc2"
-        sha1="1aa5b025efe97f5006f5be16d6ca67c6c3c0c0d8">
-        <dex dex="/Users/rage/Code/ORBeerChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.2.0_7bebda758d13ae120f2c4cd6b48d3178a18690ea/classes.dex" />
-    </item>
-
-</items>
+<items version="2" />

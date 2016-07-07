@@ -14,7 +14,7 @@ public class BreweryImages {
     private String medium;
     private String large;
 
-    public static final String NO_ICON = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+    public static final String NO_ICON = "no_icon";
 
     public BreweryImages(){
         //No arg constructor for images

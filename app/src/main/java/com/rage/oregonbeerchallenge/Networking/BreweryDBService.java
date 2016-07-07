@@ -13,12 +13,15 @@ import retrofit2.http.Query;
  */
 public interface BreweryDBService {
 
-    //Request to get all of the results where the location is Oregon.
+    /**
+     * Request to get all of the results where the location is Oregon.
+     */
     @GET("locations?key=" + ApiManager.API_KEY_VALUE + "&region=Oregon")
     Call<LocationWrapper> getBreweriesByLocation(@Query("p") int currentPage);
 
-    //Request to get all of the beers by Brewery ID
+    /**
+     * Request to get all of the beers by Brewery ID
+     */
     @GET("brewery/{brewery_id}/beers?key=" + ApiManager.API_KEY_VALUE)
     Call<BeerWrapper> getBeersByBrewery(@Path("brewery_id") String brewery_id);
-
 }
