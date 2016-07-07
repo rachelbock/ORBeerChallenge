@@ -8,6 +8,8 @@ The application uses the Brewery DB API: <http://www.brewerydb.com/>
 - The list of breweries comes from a local database set up using SQLiteOpenHelper.
 - The Floating Action Button brings the user to a list of all of the breweries in Oregon. 
 
+![Home Page](https://raw.githubusercontent.com/rachelbock/ORBeerChallenge/master/screenshots/home_page.png)
+
 ### Brewery List
 - The list of breweries contains an image of the Brewery and the Brewery Name. There is a checkbox in each row for the user to mark off which breweries they have visited.
 - Each brewery row is clickable and loads a detail fragment.
