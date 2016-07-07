@@ -14,5 +14,9 @@ The application uses the Brewery DB API: <http://www.brewerydb.com/>
 - The list of breweries contains an image of the Brewery and the Brewery Name. There is a checkbox in each row for the user to mark off which breweries they have visited.
 - Each brewery row is clickable and loads a detail fragment.
 
+![Brewery List](https://raw.githubusercontent.com/rachelbock/ORBeerChallenge/master/screenshots/brewery_list.png)
+
 ### Brewery Detail Page
 - The detail page contains the image and name of the brewery as well as a list of all of the beers if the API contains the information for the brewery. 
+
+![Brewery Details](https://raw.githubusercontent.com/rachelbock/ORBeerChallenge/master/screenshots/brewery_detail.png)
