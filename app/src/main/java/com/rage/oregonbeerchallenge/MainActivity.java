@@ -11,6 +11,9 @@ import android.view.MenuItem;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * Main Activity launched at app startup.
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.main_activity_toolbar)

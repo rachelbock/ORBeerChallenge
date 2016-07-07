@@ -7,4 +7,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tried_their_beer">Tried their beer?</string>
     <string name="no_internet_connection">You do not have an internet connection</string>
+    <string name="oregon_breweries">Oregon Breweries</string>
+    <string name="tried">Tried?</string>
+    <string name="welcome_to_the_oregon_beer_challenge">Welcome to the Oregon Beer Challenge!</string>
+    <string name="view_breweries">view breweries</string>
+    <string name="breweries">Breweries</string>
+    <string name="you_ve_visited_s_of_oregon_s_breweries">You\'ve visited %s of Oregon\'s breweries.</string>
+    <string name="no_visited_breweries">You have not visited any breweries yet. Click on the View Breweries button to start adding</string>
+    <string name="beer_list">Beer List</string>
+    <string name="load_more">Load More</string>
+    <string name="more_results">More Results</string>
 </resources>

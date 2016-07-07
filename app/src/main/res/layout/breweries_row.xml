@@ -4,39 +4,47 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="5dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
         >
-        <ImageView
-            android:id="@+id/brewery_row_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:src="@drawable/ic_home_black_24dp"
-            android:padding="5dp"
-            />
 
-        <TextView
-            android:id="@+id/brewery_row_name_text"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Brewery Name"
-            android:textSize="18sp"
-            android:padding="5dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tried_their_beer"
-            android:padding="5dp"
-            />
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:id="@+id/brewery_row_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                tools:src="@drawable/ic_home_black_24dp"
+                android:layout_marginEnd="5dp"
+                />
+
+            <TextView
+                android:id="@+id/brewery_row_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Brewery Name"
+                android:textSize="18sp"
+                android:padding="5dp"
+                />
+
+        </LinearLayout>
         <CheckBox
             android:id="@+id/brewery_row_visited_checkbox"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            />
+
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

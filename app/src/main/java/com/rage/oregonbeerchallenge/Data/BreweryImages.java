@@ -9,6 +9,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class BreweryImages {
 
     private String icon;
+    private String squareMedium;
+    private String squareLarge;
+    private String medium;
+    private String large;
+
     public static final String NO_ICON = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
 
     public BreweryImages(){
@@ -21,5 +26,37 @@ public class BreweryImages {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public String getSquareMedium() {
+        return squareMedium;
+    }
+
+    public void setSquareMedium(String squareMedium) {
+        this.squareMedium = squareMedium;
+    }
+
+    public String getSquareLarge() {
+        return squareLarge;
+    }
+
+    public void setSquareLarge(String squareLarge) {
+        this.squareLarge = squareLarge;
+    }
+
+    public String getMedium() {
+        return medium;
+    }
+
+    public void setMedium(String medium) {
+        this.medium = medium;
+    }
+
+    public String getLarge() {
+        return large;
+    }
+
+    public void setLarge(String large) {
+        this.large = large;
     }
 }
