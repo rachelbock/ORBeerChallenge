@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment {
 
         //Sets the brewery recycler view up giving it the list of breweries from the database.
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        BreweryRecyclerViewAdapter adapter = new BreweryRecyclerViewAdapter(breweries, visitedBrewerySQLiteHelper, getActivity(), getContext());
+        BreweryRecyclerViewAdapter adapter = new BreweryRecyclerViewAdapter(breweries, visitedBrewerySQLiteHelper, getActivity());
         recyclerView.setAdapter(adapter);
 
         return rootView;

@@ -1,6 +1,5 @@
 package com.rage.oregonbeerchallenge.Adapters;
 
-import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -23,19 +22,23 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Adapter to display each brewery row.
+ * Adapter to display each brewery row from both the local database and the API. Handles adding visited
+ * breweries to the local database and launching the detail fragment from a row click.
  */
 public class BreweryRecyclerViewAdapter extends RecyclerView.Adapter<BreweryRecyclerViewAdapter.BreweryViewHolder> {
 
     private List<BreweryObj> breweries;
-    private Context context;
     private VisitedBrewerySQLiteHelper visitedBrewerySQLiteHelper;
     private FragmentActivity fragmentActivity;
 
-    public static final String TAG = BreweryRecyclerViewAdapter.class.getSimpleName();
-
-    public BreweryRecyclerViewAdapter(List<BreweryObj> breweries, VisitedBrewerySQLiteHelper visitedBrewerySQLiteHelper, FragmentActivity fragmentActivity, Context context) {
-        this.context = context;
+    /**
+     * Constructor for adapter.
+     * @param breweries - the list of breweries to display.
+     * @param visitedBrewerySQLiteHelper - instance of the local database to display on the home fragment
+     *                                   and to update when visited status changes.
+     * @param fragmentActivity - fragment activity to get support fragment manager from.
+     */
+    public BreweryRecyclerViewAdapter(List<BreweryObj> breweries, VisitedBrewerySQLiteHelper visitedBrewerySQLiteHelper, FragmentActivity fragmentActivity) {
         this.visitedBrewerySQLiteHelper = visitedBrewerySQLiteHelper;
         this.fragmentActivity = fragmentActivity;
         this.breweries = breweries;
@@ -53,7 +56,7 @@ public class BreweryRecyclerViewAdapter extends RecyclerView.Adapter<BreweryRecy
     public void onBindViewHolder(final BreweryViewHolder holder, int position) {
         final BreweryObj breweryObj = breweries.get(position);
 
-        Picasso.with(context).load(breweryObj.getImage()).fit().centerCrop().into(holder.breweryImage);
+        Picasso.with(fragmentActivity).load(breweryObj.getImage()).fit().centerCrop().into(holder.breweryImage);
 
         holder.breweryName.setText(breweryObj.getName());
 
@@ -77,7 +80,7 @@ public class BreweryRecyclerViewAdapter extends RecyclerView.Adapter<BreweryRecy
             }
         });
 
-        //On Click listener for the entire brewery row. Launches the detail fragment
+        //On Click listener for the entire brewery row. Launches the detail fragment.
         holder.breweryRowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

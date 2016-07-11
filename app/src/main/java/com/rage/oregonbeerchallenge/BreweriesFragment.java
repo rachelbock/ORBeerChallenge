@@ -88,7 +88,7 @@ public class BreweriesFragment extends Fragment {
 
         //Sets the brewery Recycler View with the list of breweries from the breweries db.
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new BreweryRecyclerViewAdapter(breweryObjs, visitedBrewerySQLiteHelper, getActivity(), getContext());
+        adapter = new BreweryRecyclerViewAdapter(breweryObjs, visitedBrewerySQLiteHelper, getActivity());
         recyclerView.setAdapter(adapter);
 
         return rootView;
@@ -162,6 +162,7 @@ public class BreweriesFragment extends Fragment {
                 @Override
                 public void onFailure(Call<LocationWrapper> call, Throwable t) {
                     Log.d(TAG, "Failed to retrieve brewery data" + t);
+                    Toast.makeText(getContext(), R.string.fail_message, Toast.LENGTH_SHORT).show();
                 }
             });
 

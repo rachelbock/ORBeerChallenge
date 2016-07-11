@@ -68,6 +68,10 @@ public class VisitedBrewerySQLiteHelper extends SQLiteOpenHelper {
         return cursor.getString(cursor.getColumnIndex(columnName));
     }
 
+    public Boolean getCursorBool(Cursor cursor, String columnName) {
+        return cursor.getInt(cursor.getColumnIndex(columnName)) > 0;
+    }
+
     /**
      * Queries the database for all breweries that exist in the database. In this case, only visited
      * breweries exist in the database.
@@ -79,16 +83,16 @@ public class VisitedBrewerySQLiteHelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + BreweryObj.TABLE_NAME;
         Cursor cursor = getReadableDatabase().rawQuery(query, null);
 
-        //Starts at the first row and pulls data at each column to add to the brewery object. Passing
-        //default value of true for if visited as if it is in the database that would be true. Blank
-        //string for the description as that is not stored in the database but is required for the
-        //constructor.
+
+        //If there are results - starting at the first result, create a brewery object using the data
+        //from each column and add to the list of breweries to be returned.
         if (cursor.moveToFirst()) {
             do {
                 String id = getCursorString(cursor, BreweryObj.COL_ID);
                 String name = getCursorString(cursor, BreweryObj.COL_NAME);
                 String image = getCursorString(cursor, BreweryObj.COL_IMAGE);
-                BreweryObj breweryObj = new BreweryObj(id, name, image, true);
+                Boolean visited = getCursorBool(cursor, BreweryObj.COL_VISITED);
+                BreweryObj breweryObj = new BreweryObj(id, name, image, visited);
                 breweries.add(breweryObj);
             }
             while (cursor.moveToNext());
@@ -108,7 +112,7 @@ public class VisitedBrewerySQLiteHelper extends SQLiteOpenHelper {
      * Removes a brewery from the table.
      */
     public void removeVisitedBrewery(String breweryId) {
-        String query = BreweryObj.COL_ID + " = '" + breweryId + "'";
-        getWritableDatabase().delete(BreweryObj.TABLE_NAME, query, null);
+        String query = BreweryObj.COL_ID + " = ? ";
+        getWritableDatabase().delete(BreweryObj.TABLE_NAME, query, new String[]{breweryId});
     }
 }
