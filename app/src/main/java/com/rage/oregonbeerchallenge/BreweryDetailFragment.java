@@ -78,17 +78,22 @@ public class BreweryDetailFragment extends Fragment {
 
         BreweryObj brewery = getArguments().getParcelable(ARG_BREWERY);
 
-        Picasso.with(getContext()).load(brewery.getImage()).fit().into(breweryImage);
-        breweryName.setText(brewery.getName());
+        if (brewery == null) {
+            Log.d(TAG, "brewery detail fragment attempted to load with a null brewery");
+        }
+        else {
+            Picasso.with(getContext()).load(brewery.getImage()).fit().into(breweryImage);
+            breweryName.setText(brewery.getName());
+            //Gets beers by brewery Id.
+            beerList = new ArrayList<>();
+            fetchBeersByBreweryId(brewery.getId());
 
-        //Gets beers by brewery Id.
-        beerList = new ArrayList<>();
-        fetchBeersByBreweryId(brewery.getId());
+            //Sets the beer recycler view with the list of beers from network call.
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            adapter = new BeerRecyclerViewAdapter(beerList);
+            recyclerView.setAdapter(adapter);
 
-        //Sets the beer recycler view with the list of beers from network call.
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new BeerRecyclerViewAdapter(beerList);
-        recyclerView.setAdapter(adapter);
+        }
 
         return rootView;
     }
@@ -124,6 +129,7 @@ public class BreweryDetailFragment extends Fragment {
                 @Override
                 public void onFailure(Call<BeerWrapper> call, Throwable t) {
                     Log.d(TAG, "Failed to get beers from database");
+                    Toast.makeText(getContext(), R.string.fail_message, Toast.LENGTH_SHORT).show();
                 }
             });
         } else {

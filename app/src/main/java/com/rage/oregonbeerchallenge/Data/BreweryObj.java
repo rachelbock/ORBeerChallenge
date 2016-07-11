@@ -8,7 +8,7 @@ import android.provider.BaseColumns;
 /**
  * Contains the data on breweries and constants for local database
  */
-public class BreweryObj implements BaseColumns, Parcelable{
+public class BreweryObj implements BaseColumns, Parcelable {
 
     //Database Column Headers
     public static final String TABLE_NAME = "visited_breweries";
@@ -30,16 +30,16 @@ public class BreweryObj implements BaseColumns, Parcelable{
     }
 
 
-
     public BreweryObj(String breweryId, String breweryName) {
         id = breweryId;
         name = breweryName;
-      }
+    }
 
     protected BreweryObj(Parcel in) {
         id = in.readString();
         name = in.readString();
         image = in.readString();
+        visited = in.readInt() != 0;
     }
 
     public static final Creator<BreweryObj> CREATOR = new Creator<BreweryObj>() {
@@ -105,5 +105,10 @@ public class BreweryObj implements BaseColumns, Parcelable{
         dest.writeString(id);
         dest.writeString(name);
         dest.writeString(image);
+        if (visited) {
+            dest.writeInt(1);
+        } else {
+            dest.writeInt(0);
+        }
     }
 }
