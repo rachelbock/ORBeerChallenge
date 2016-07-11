@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.rage.oregonbeerchallenge.Adapters.BreweryRecyclerViewAdapter;
@@ -42,6 +43,8 @@ public class BreweriesFragment extends Fragment {
 
     @Bind(R.id.breweries_fragment_recycler_view)
     protected RecyclerView recyclerView;
+    @Bind(R.id.breweries_fragment_progress_bar)
+    protected ProgressBar progressBar;
 
     private BreweryRecyclerViewAdapter adapter;
 
@@ -153,6 +156,8 @@ public class BreweriesFragment extends Fragment {
                             }
                         }
 
+                        //Once task is complete - remove the progress bar.
+                        progressBar.setVisibility(View.INVISIBLE);
                         //Notifies the adapter that there have been updates to display.
                         adapter.notifyDataSetChanged();
                     }

@@ -22,6 +22,12 @@
         android:layout_below="@id/detail_page_brewery_image"
         >
 
+        <ProgressBar
+            android:id="@+id/detail_page_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

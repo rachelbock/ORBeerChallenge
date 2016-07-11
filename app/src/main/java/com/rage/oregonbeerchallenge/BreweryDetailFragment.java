@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,9 @@ public class BreweryDetailFragment extends Fragment {
 
     @Bind(R.id.detail_page_recycler_view)
     protected RecyclerView recyclerView;
+
+    @Bind(R.id.detail_page_progress_bar)
+    protected ProgressBar progressBar;
 
     private List<Beer> beerList;
     private BeerRecyclerViewAdapter adapter;
@@ -124,6 +128,10 @@ public class BreweryDetailFragment extends Fragment {
                         beerList.addAll(beerWrapper.getData());
                         adapter.notifyDataSetChanged();
                     }
+
+                    //Once the beers have loaded - regardless of whether or not there are beers in the API
+                    //remove the progress bar.
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
 
                 @Override
