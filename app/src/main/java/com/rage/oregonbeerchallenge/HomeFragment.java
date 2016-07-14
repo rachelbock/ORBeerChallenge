@@ -26,7 +26,7 @@ import butterknife.OnClick;
  * a list of those breweries. FAB allows user to launch breweries fragment and add more visited breweries
  * to the database.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements BreweryRecyclerViewAdapter.OnBreweryRowClickedListener{
 
     @Bind(R.id.home_fragment_recycler_view)
     protected RecyclerView recyclerView;
@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment {
 
         //Sets the brewery recycler view up giving it the list of breweries from the database.
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        BreweryRecyclerViewAdapter adapter = new BreweryRecyclerViewAdapter(breweries, visitedBrewerySQLiteHelper, getActivity());
+        BreweryRecyclerViewAdapter adapter = new BreweryRecyclerViewAdapter(breweries, visitedBrewerySQLiteHelper, getActivity(), this);
         recyclerView.setAdapter(adapter);
 
         return rootView;
@@ -90,4 +90,11 @@ public class HomeFragment extends Fragment {
         transaction.commit();
     }
 
+    @Override
+    public void onBreweryRowClicked(BreweryObj brewery) {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_activity_frame_layout, BreweryDetailFragment.newInstance(brewery));
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }

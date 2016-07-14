@@ -20,7 +20,7 @@ public class BreweryObj implements BaseColumns, Parcelable {
     private String id;
     private String name;
     private String image;
-    private Boolean visited = false;
+    private boolean visited = false;
 
     public BreweryObj(String breweryId, String breweryName, String imageURL, Boolean visited) {
         id = breweryId;
@@ -70,11 +70,11 @@ public class BreweryObj implements BaseColumns, Parcelable {
         this.name = name;
     }
 
-    public Boolean getVisited() {
+    public boolean getVisited() {
         return visited;
     }
 
-    public void setVisited(Boolean visited) {
+    public void setVisited(boolean visited) {
         this.visited = visited;
     }
 

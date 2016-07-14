@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -37,7 +38,7 @@ import retrofit2.Response;
 /**
  * Fragment to display list of breweries in Oregon.
  */
-public class BreweriesFragment extends Fragment {
+public class BreweriesFragment extends Fragment implements BreweryRecyclerViewAdapter.OnBreweryRowClickedListener {
 
     public static final String TAG = BreweriesFragment.class.getSimpleName();
 
@@ -91,7 +92,7 @@ public class BreweriesFragment extends Fragment {
 
         //Sets the brewery Recycler View with the list of breweries from the breweries db.
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new BreweryRecyclerViewAdapter(breweryObjs, visitedBrewerySQLiteHelper, getActivity());
+        adapter = new BreweryRecyclerViewAdapter(breweryObjs, visitedBrewerySQLiteHelper, getActivity(), this);
         recyclerView.setAdapter(adapter);
 
         return rootView;
@@ -143,7 +144,7 @@ public class BreweriesFragment extends Fragment {
 
                                 //By default each brewery would not be visited. However, if the brewery
                                 //is contained in the database list of breweries than it has been visited.
-                                Boolean visited = false;
+                                boolean visited = false;
                                 for (BreweryObj databaseBrewery : databaseBreweries) {
                                     if (location.getBreweryId().equals(databaseBrewery.getId())) {
                                         visited = true;
@@ -193,4 +194,12 @@ public class BreweriesFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onBreweryRowClicked(BreweryObj brewery) {
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_activity_frame_layout, BreweryDetailFragment.newInstance(brewery));
+        transaction.addToBackStack(null);
+        transaction.commit();
+
+    }
 }

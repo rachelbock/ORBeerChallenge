@@ -1,7 +1,6 @@
 package com.rage.oregonbeerchallenge.Adapters;
 
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.rage.oregonbeerchallenge.BreweryDetailFragment;
 import com.rage.oregonbeerchallenge.Data.BreweryObj;
 import com.rage.oregonbeerchallenge.R;
 import com.rage.oregonbeerchallenge.VisitedBrewerySQLiteHelper;
@@ -30,6 +28,7 @@ public class BreweryRecyclerViewAdapter extends RecyclerView.Adapter<BreweryRecy
     private List<BreweryObj> breweries;
     private VisitedBrewerySQLiteHelper visitedBrewerySQLiteHelper;
     private FragmentActivity fragmentActivity;
+    private OnBreweryRowClickedListener listener;
 
     /**
      * Constructor for adapter.
@@ -38,10 +37,15 @@ public class BreweryRecyclerViewAdapter extends RecyclerView.Adapter<BreweryRecy
      *                                   and to update when visited status changes.
      * @param fragmentActivity - fragment activity to get support fragment manager from.
      */
-    public BreweryRecyclerViewAdapter(List<BreweryObj> breweries, VisitedBrewerySQLiteHelper visitedBrewerySQLiteHelper, FragmentActivity fragmentActivity) {
+    public BreweryRecyclerViewAdapter(List<BreweryObj> breweries, VisitedBrewerySQLiteHelper visitedBrewerySQLiteHelper, FragmentActivity fragmentActivity, OnBreweryRowClickedListener listener) {
         this.visitedBrewerySQLiteHelper = visitedBrewerySQLiteHelper;
         this.fragmentActivity = fragmentActivity;
         this.breweries = breweries;
+        this.listener = listener;
+    }
+
+    public interface OnBreweryRowClickedListener{
+        void onBreweryRowClicked(BreweryObj brewery);
     }
 
     @Override
@@ -80,15 +84,14 @@ public class BreweryRecyclerViewAdapter extends RecyclerView.Adapter<BreweryRecy
             }
         });
 
-        //On Click listener for the entire brewery row. Launches the detail fragment.
+        //On Click listener for the entire brewery row. Sets the listener to the brewery selected.
         holder.breweryRowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BreweryObj oneBrewery = breweries.get(holder.getAdapterPosition());
-                FragmentTransaction transaction = fragmentActivity.getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.main_activity_frame_layout, BreweryDetailFragment.newInstance(oneBrewery));
-                transaction.addToBackStack(null);
-                transaction.commit();
+                if (listener != null) {
+                    listener.onBreweryRowClicked(breweries.get(holder.getAdapterPosition()));
+                }
+
             }
         });
 
